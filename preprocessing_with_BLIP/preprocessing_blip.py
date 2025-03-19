@@ -1,21 +1,32 @@
 import pandas as pd
 import re
 import os
+from tqdm import tqdm
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
+import torch
+
+# Vérifier si un GPU est disponible
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Charger le modèle et le processor BLIP
-processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
+model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
+
+# Déplacer le modèle sur le GPU si disponible
+model = model.to(device)
 
 # Fonction pour générer la description de l'image avec BLIP
 def generate_image_description(image_path):
-    print(f"Génération de la description pour l'image {image_path}...")
     image = Image.open(image_path).convert("RGB")
     inputs = processor(image, return_tensors="pt")
 
     # Générer la description
-    out = model.generate(**inputs)
+    out = model.generate(**inputs,
+                         max_length=100,    # Limite de 100 tokens
+                         no_repeat_ngram_size=2,    # Eviter les répétitions de mots
+                         top_k=50   # Sélectionner les 50 meilleurs tokens
+                         )
 
     return processor.decode(out[0], skip_special_tokens=True)
 
@@ -42,7 +53,9 @@ df['Text Transcription'] = df['Text Transcription'].apply(clean_text)
 df = df.rename(columns={'misogynous': 'label', 'Text Transcription': 'text'})
 
 # Génération des descriptions d'images
-df['img_desc'] = df['file_name'].apply(lambda x: generate_image_description(os.path.join(base_path, x)))
+tqdm.pandas(desc="Traitement des images (train)")
+df['img_desc'] = df['file_name'].progress_apply(lambda x: generate_image_description(os.path.join(base_path, x)))
+
 df.drop(columns=['file_name'], inplace=True)
 
 # Sauvegarder le nouveau CSV
@@ -71,7 +84,9 @@ df['Text Transcription'] = df['Text Transcription'].apply(clean_text)
 df = df.rename(columns={'misogynous': 'label', 'Text Transcription': 'text'})
 
 # Génération des descriptions d'images
-df['img_desc'] = df['file_name'].apply(lambda x: generate_image_description(os.path.join(base_path, x)))
+tqdm.pandas(desc="Traitement des images (test)")
+df['img_desc'] = df['file_name'].progress_apply(lambda x: generate_image_description(os.path.join(base_path, x)))
+
 df.drop(columns=['file_name'], inplace=True)
 
 # Sauvegarder le nouveau CSV
