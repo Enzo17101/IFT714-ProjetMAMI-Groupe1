@@ -11,11 +11,13 @@ from tqdm import tqdm
 
 
 class MultimodalDataset(Dataset):
-    def __init__(self, dataframe, image_dir):
+    def __init__(self, dataframe, image_dir, max_length=128):
         self.data = dataframe
         self.image_dir = image_dir
         self.bert_tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
         self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+        self.max_length = max_length
 
     def __len__(self):
         return len(self.data)
@@ -27,7 +29,7 @@ class MultimodalDataset(Dataset):
         label = torch.tensor(row["label"], dtype=torch.long)
 
         # Texte
-        text_inputs = self.bert_tokenizer(text, return_tensors="pt", padding="max_length", truncation=True, max_length=128)
+        text_inputs = self.bert_tokenizer(text, return_tensors="pt", padding="max_length", truncation=True, max_length=self.max_length)
 
         # Image
         image_path = os.path.join(self.image_dir, file_name)
@@ -43,14 +45,14 @@ class MultimodalDataset(Dataset):
 
 
 class MultimodalClassifier(nn.Module):
-    def __init__(self, bert_dim=768, clip_dim=512, hidden_dim=256):
+    def __init__(self, bert_dim=768, clip_dim=512, hidden_dim=256, dropout=0.3):
         super().__init__()
         self.bert = BertModel.from_pretrained("bert-base-uncased")
         self.clip = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
         self.classifier = nn.Sequential(
             nn.Linear(bert_dim + clip_dim, hidden_dim),
             nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.Dropout(dropout),
             nn.Linear(hidden_dim, 2)
         )
 
