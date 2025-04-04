@@ -1,0 +1,11 @@
+﻿Hyperparamètres et Résultats,valeurs_1,valeurs_2,valeurs_3,valeurs_4,valeurs_5,valeurs_6
+batch_size,16,16,16,16,16,16
+n_estimators,100,50,500,100,200,50
+max_depth,15,10,10,20,,10
+min_samples_split,4,5,5,6,3,5
+min_samples_leaf,2,4,4,5,2,4
+max_features,sqrt,log2,log2,log2,log2,log2
+train_acc,0.9999,0.9678,0.9806,0.9981,1.0,0.9678
+train_f1_score,0.9999,0.9675,0.9805,0.9981,1.0,0.9675
+test_acc,0.68,0.664,0.683,0.684,0.675,0.664
+test_f1_score,0.7138,0.6984,0.7152,0.7179,0.7106,0.6984
