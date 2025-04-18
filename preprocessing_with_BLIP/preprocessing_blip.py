@@ -19,7 +19,7 @@ model = model.to(device)
 # Fonction pour générer la description de l'image avec BLIP
 def generate_image_description(image_path):
     image = Image.open(image_path).convert("RGB")
-    inputs = processor(image, return_tensors="pt")
+    inputs = processor(image, return_tensors="pt").to(device)
 
     # Générer la description
     out = model.generate(**inputs,
