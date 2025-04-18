@@ -1,11 +1,11 @@
-﻿Hyperparamètres et Résultats,valeurs_1,valeurs_2,valeurs_3,valeurs_4,valeurs_5,valeurs_6,valeurs_7,valeurs_8,valeurs_9,valeurs_10,valeurs_11,valeurs_12,valeurs_13,valeurs_14,valeurs_15,valeurs_16,valeurs_17,valeurs_18,valeurs_19
-num_epochs,400,300,400,400,400,400,400,500,350,450,450,550,500,450,450,450,450,450,450
-batch_size,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256
-dropout,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5
-lr,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,5e-06,5e-06,0.0005,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05
-schedule,False,False,True,True,True,True,True,True,True,True,True,True,True,True,True,True,True,True,False
-loss,BCELoss,BCELoss,BCELoss,CrossEntropyLoss,HingeEmbeddingLoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss
-train_acc,0.8536,0.8423,0.8559,0.5251,0.1851,0.8551,0.8564,0.8692,0.8502,0.8629,0.833,0.8409,1.0,0.8628,0.8628,0.8627,0.8011,0.8628,0.8628
-train_f1_score,0.8511,0.8389,0.8542,0.5336,0.0886,0.8529,0.8542,0.868,0.8476,0.8614,0.8285,0.8372,1.0,0.8613,0.8613,0.8612,0.7975,0.8613,0.8613
-test_acc,0.715,0.694,0.719,0.513,0.366,0.701,0.711,0.711,0.709,0.717,0.689,0.699,0.705,0.717,0.715,0.717,0.666,0.717,0.717
-test_f1_score,0.7583,0.7416,0.7625,0.5096,0.0537,0.7464,0.7532,0.754,0.7511,0.7583,0.7358,0.7438,0.7506,0.7583,0.7566,0.7583,0.7131,0.7583,0.7583
+﻿Hyperparamètres et Résultats,valeurs_1,valeurs_2,valeurs_3,valeurs_4,valeurs_5,valeurs_6,valeurs_7,valeurs_8,valeurs_9,valeurs_10,valeurs_11,valeurs_12,valeurs_13,valeurs_14,valeurs_15,valeurs_16,valeurs_17,valeurs_18,valeurs_19,valeurs_20
+num_epochs,400,300,400,400,400,400,400,500,350,450,450,550,500,450,450,450,450,450,450,450
+batch_size,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256
+dropout,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5
+lr,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,5e-06,5e-06,0.0005,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05
+schedule,False,False,True,True,True,True,True,True,True,True,True,True,True,True,True,True,True,True,False,False
+loss,BCELoss,BCELoss,BCELoss,CrossEntropyLoss,HingeEmbeddingLoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss,BCELoss
+train_acc,0.8536,0.8423,0.8559,0.5251,0.1851,0.8551,0.8564,0.8692,0.8502,0.8629,0.833,0.8409,1.0,0.8628,0.8628,0.8627,0.8011,0.8628,0.8628,0.8628
+train_f1_score,0.8511,0.8389,0.8542,0.5336,0.0886,0.8529,0.8542,0.868,0.8476,0.8614,0.8285,0.8372,1.0,0.8613,0.8613,0.8612,0.7975,0.8613,0.8613,0.8613
+test_acc,0.715,0.694,0.719,0.513,0.366,0.701,0.711,0.711,0.709,0.717,0.689,0.699,0.705,0.717,0.715,0.717,0.666,0.717,0.717,0.717
+test_f1_score,0.7583,0.7416,0.7625,0.5096,0.0537,0.7464,0.7532,0.754,0.7511,0.7583,0.7358,0.7438,0.7506,0.7583,0.7566,0.7583,0.7131,0.7583,0.7583,0.7583
