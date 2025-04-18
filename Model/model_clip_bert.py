@@ -1,4 +1,3 @@
-
 import os
 import pandas as pd
 import torch
@@ -12,6 +11,12 @@ from tqdm import tqdm
 
 class MultimodalDataset(Dataset):
     def __init__(self, dataframe, image_dir, max_length=128):
+        """
+        Classe représentant un jeu de données multimodal et les tokenisers associés
+        :param dataframe:
+        :param image_dir:
+        :param max_length:
+        """
         self.data = dataframe
         self.image_dir = image_dir
         self.bert_tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -46,6 +51,13 @@ class MultimodalDataset(Dataset):
 
 class MultimodalClassifier(nn.Module):
     def __init__(self, bert_dim=768, clip_dim=512, hidden_dim=256, dropout=0.3):
+        """
+        Classe représentant le modèle multimodal réalisant la classification des mèmes
+        :param bert_dim:
+        :param clip_dim:
+        :param hidden_dim:
+        :param dropout:
+        """
         super().__init__()
         self.bert = BertModel.from_pretrained("bert-base-uncased")
         self.clip = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
@@ -66,6 +78,13 @@ class MultimodalClassifier(nn.Module):
 
 
 def evaluate_model(model, dataloader, device):
+    """
+    Fonction utile à l'évaluation des résultats du modèle
+    :param model:
+    :param dataloader:
+    :param device:
+    :return:
+    """
     model.eval()
     all_preds, all_labels = [], []
 
