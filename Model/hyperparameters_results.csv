@@ -1,5 +1,0 @@
-Hyperparamètres et Résultats,rl,rf,rn
-train_acc,0.8441,0.9981,0.8628
-train_f1_score,0.8424,0.9981,0.8613
-test_acc,0.705,0.684,0.717
-test_f1_score,0.7511,0.7179,0.7583
